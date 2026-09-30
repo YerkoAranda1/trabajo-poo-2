@@ -16,6 +16,6 @@ class Proyecto:
         pass
 
     def asignarEmpleado():
-        pass
+        return "Empleado asignado."
 
     
