@@ -32,16 +32,60 @@ try:
     fechaInicio TEXT NOT NULL
     )    
 """)
+    conexion.commit()
+
+#-------------------------------------------
+#           Insert Proyecto
+#-------------------------------------------
+
+    nombreProyecto = input("Ingrese nombre del proyecto: ")
+    descProyecto = input("Ingrese descripcion del proyecto: ")
+    fechaProyecto = input("Ingrese fecha de Inicio del proyecto: ")
     
-#     def __init__(self,idProyecto,nombre,descripcion,fechaInicio):
-#         self.idProyecto = idProyecto
-#         self.nombre = nombre
-#         self.descripcion = descripcion
-#         self.fechaInicio = fechaInicio
+    proyecto_1 = Proyecto(None,nombreProyecto,descProyecto,fechaProyecto)
 
+    cursor.execute("""
+    INSERT INTO proyecto (nombre,descripcion,fechaInicio)
+    values (?, ?, ?)
+""", (nombreProyecto,descProyecto,fechaProyecto))
 
+    conexion.commit()
+    
+#-------------------------------------------
+#           Read Proyecto
+#-------------------------------------------
+    id_buscar = input("Ingrese id a buscar: ")
 
+    cursor.execute("""
+    SELECT idProyecto, nombre, descripcion
+    FROM proyecto
+    WHERE idProyecto = ?
+""",(id_buscar,))
 
+    proyecto_encontrado = cursor.fetchall()
+    print(f"Proyecto encontrado: {proyecto_encontrado}")
+
+#-------------------------------------------
+#       Update Proyecto
+#-------------------------------------------
+
+#     cursor.execute("""
+#     UPDATE proyecto
+#     set idP
+# """)
+#     conexion.commit()
+
+#-------------------------------------------
+#           Delete Proyecto
+#-------------------------------------------
+#     idP = 1
+
+#     cursor.execute("""
+#     DELETE FROM proyecto
+#     WHERE idProyecto = ?
+# """)
+#     conexion.commit()
+#     print(f"proyecto {idP} eliminado.")
 
 #----------------------------------------------------------------------
 # Captura especificamente los errores de la base de datos
